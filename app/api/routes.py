@@ -1,6 +1,6 @@
 #app/api/routes.py
 from fastapi import APIRouter
-from .query import get_nfl_team_data, get_nfl_player_data, get_schedule_by_team
+from .query import get_nfl_player_data
 
 router = APIRouter()
 

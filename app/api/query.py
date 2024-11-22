@@ -2,7 +2,7 @@ import os
 import requests
 import certifi
 from dotenv import load_dotenv
-from ..util.clean_data import clean_qb_data, clean_wr_data, clean_rb_data, clean_k_data
+from util.clean_data import clean_qb_data, clean_wr_data, clean_rb_data, clean_k_data
 
 #Load environment variables
 load_dotenv()
