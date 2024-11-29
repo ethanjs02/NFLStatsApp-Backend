@@ -11,7 +11,7 @@ def clean_qb_data(player_data):
         "avgRushingYards": round(next(stat["value"] for stat in data[2]["stats"] if stat["name"] == "rushingYardsPerGame"), 2),
         "totalRushingTDs": next(stat["value"] for stat in data[2]["stats"] if stat["name"] == "rushingTouchdowns"),
         "totalRushAttempts": next(stat["value"] for stat in data[2]["stats"] if stat["name"] == "rushingAttempts"),
-        "avgRushAttempts": next(stat["value"] for stat in data[2]["stats"] if stat["name"] == "yardsPerRushAttempt"),
+        "avgRushAttempts": round(next(stat["value"] for stat in data[2]["stats"] if stat["name"] == "yardsPerRushAttempt"), 2),
         "totalInterceptions": next(stat["value"] for stat in data[1]["stats"] if stat["name"] == "interceptions"),
         "fumblesLost": next(stat["value"] for stat in data[0]["stats"] if stat["name"] == "fumblesLost"),
     }
@@ -53,7 +53,7 @@ def clean_rb_data(player_data, team_data):
         "totalRushingTDs": next(stat["value"] for stat in data[2]["stats"] if stat["name"] == "rushingTouchdowns"),
         "totalRushAttempts": next(stat["value"] for stat in data[2]["stats"] if stat["name"] == "rushingAttempts"),
         "totalReceivingYards": next(stat["value"] for stat in data[3]["stats"] if stat["name"] == "receivingYards"),
-        "receivingYardsPerGame": next(stat["value"] for stat in data[3]["stats"] if stat["name"] == "receivingYardsPerGame"),
+        "receivingYardsPerGame": round(next(stat["value"] for stat in data[3]["stats"] if stat["name"] == "receivingYardsPerGame"), 2),
         "totalReceivingTDs": next(stat["value"] for stat in data[3]["stats"] if stat["name"] == "receivingTouchdowns"),
         "totalReceptions": next(stat["value"] for stat in data[3]["stats"] if stat["name"] == "receivingTargets"),
         "totalFumbles": next(stat["value"] for stat in data[0]["stats"] if stat["name"] == "fumbles"),
