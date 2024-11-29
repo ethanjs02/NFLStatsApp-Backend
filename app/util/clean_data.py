@@ -79,7 +79,7 @@ def clean_k_data(player_data):
     player_stats = {
         "gamesPlayed": next(stat["value"] for stat in data[0]["stats"] if stat["name"] == "gamesPlayed"),
         "extraPointAttempts": next(stat["value"] for stat in data[4]["stats"] if stat["name"] == "extraPointAttempts"),
-        "extraPointPct": next(stat["value"] for stat in data[4]["stats"] if stat["name"] == "extraPointPct"),
+        "extraPointPct": round(next(stat["value"] for stat in data[4]["stats"] if stat["name"] == "extraPointPct"), 2),
         "extraPointsMade": next(stat["value"] for stat in data[4]["stats"] if stat["name"] == "extraPointsMade"),
         "fieldGoalAttempts": next(stat["value"] for stat in data[4]["stats"] if stat["name"] == "fieldGoalAttempts"),
         "fieldGoalAttempts1_19": next(stat["value"] for stat in data[4]["stats"] if stat["name"] == "fieldGoalAttempts1_19"),
@@ -88,7 +88,7 @@ def clean_k_data(player_data):
         "fieldGoalAttempts40_49": next(stat["value"] for stat in data[4]["stats"] if stat["name"] == "fieldGoalAttempts40_49"),
         "fieldGoalAttempts50_59": next(stat["value"] for stat in data[4]["stats"] if stat["name"] == "fieldGoalAttempts50_59"),
         "fieldGoalAttempts60_99": next(stat["value"] for stat in data[4]["stats"] if stat["name"] == "fieldGoalAttempts60_99"),
-        "fieldGoalPct": next(stat["value"] for stat in data[4]["stats"] if stat["name"] == "fieldGoalPct"),
+        "fieldGoalPct": round(next(stat["value"] for stat in data[4]["stats"] if stat["name"] == "fieldGoalPct"), 2),
         "fieldGoalsMade": next(stat["value"] for stat in data[4]["stats"] if stat["name"] == "fieldGoalsMade"),
         "fieldGoalsMade1_19": next(stat["value"] for stat in data[4]["stats"] if stat["name"] == "fieldGoalsMade1_19"),
         "fieldGoalsMade20_29": next(stat["value"] for stat in data[4]["stats"] if stat["name"] == "fieldGoalsMade20_29"),
