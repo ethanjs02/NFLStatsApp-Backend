@@ -67,7 +67,7 @@ def get_team_stats(team_id):
     
     response = requests.get(url, headers=headers, params=querystring)
 
-    return response
+    return response.json()
 
 
 def get_schedule(team_id):
