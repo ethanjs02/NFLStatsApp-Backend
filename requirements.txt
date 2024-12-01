@@ -2,4 +2,4 @@ fastapi
 uvicorn
 requests
 certifi
-
+python-dotenv
