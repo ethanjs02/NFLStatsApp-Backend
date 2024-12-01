@@ -1,4 +1,4 @@
-def clean_qb_data(player_data):
+def clean_qb_data(player_data, team_data):
     data = player_data['statistics']['splits']['categories']
 
     player_stats = {
@@ -16,7 +16,16 @@ def clean_qb_data(player_data):
         "fumblesLost": next(stat["value"] for stat in data[0]["stats"] if stat["name"] == "fumblesLost"),
     }
 
-    return player_stats
+    data = team_data['statistics']['splits']['categories']
+
+    team_stats = {
+        "teamPassAttempts": next(stat["value"] for stat in data[3]["stats"] if stat["name"] == "receivingTargets"),
+        "teamRushAttempts": next(stat["value"] for stat in data[2]["stats"] if stat["name"] == "rushingAttempts"), 
+    }
+
+    player_stats["rushShare"] = str(round((float(player_stats["totalRushAttempts"]) / float(team_stats["teamRushAttempts"])) * 100, 2))
+
+    return {**player_stats, **team_stats}
 
 
 def clean_wr_data(player_data, team_data):
@@ -30,17 +39,20 @@ def clean_wr_data(player_data, team_data):
         "totalReceptions": next(stat["value"] for stat in data[3]["stats"] if stat["name"] == "receivingTargets"),
         "totalRushingYards": next(stat["value"] for stat in data[2]["stats"] if stat["name"] == "rushingYards"),
         "totalRushingTDs": next(stat["value"] for stat in data[2]["stats"] if stat["name"] == "rushingTouchdowns"),
-        "totalFumbles": next(stat["value"] for stat in data[0]["stats"] if stat["name"] == "fumbles"),
+        "fumblesLost": next(stat["value"] for stat in data[0]["stats"] if stat["name"] == "fumblesLost"),
     }
 
     data = team_data['statistics']['splits']['categories']
 
-    team_stats = { "teamPassAttempts": next(stat["value"] for stat in data[3]["stats"] if stat["name"] == "receivingTargets") }
+    team_stats = {
+        "teamPassAttempts": next(stat["value"] for stat in data[3]["stats"] if stat["name"] == "receivingTargets"),
+        "teamRushAttempts": next(stat["value"] for stat in data[2]["stats"] if stat["name"] == "rushingAttempts"), 
+    }
 
     player_stats["targetShare"] = str(round((float(player_stats["totalReceptions"]) / float(team_stats["teamPassAttempts"])) * 100, 2))
 
 
-    return player_stats
+    return {**player_stats, **team_stats}
 
 
 def clean_rb_data(player_data, team_data):
@@ -56,7 +68,7 @@ def clean_rb_data(player_data, team_data):
         "receivingYardsPerGame": round(next(stat["value"] for stat in data[3]["stats"] if stat["name"] == "receivingYardsPerGame"), 2),
         "totalReceivingTDs": next(stat["value"] for stat in data[3]["stats"] if stat["name"] == "receivingTouchdowns"),
         "totalReceptions": next(stat["value"] for stat in data[3]["stats"] if stat["name"] == "receivingTargets"),
-        "totalFumbles": next(stat["value"] for stat in data[0]["stats"] if stat["name"] == "fumbles"),
+        "fumblesLost": next(stat["value"] for stat in data[0]["stats"] if stat["name"] == "fumblesLost"),
     }
 
     data = team_data['statistics']['splits']['categories']
@@ -70,7 +82,7 @@ def clean_rb_data(player_data, team_data):
     player_stats["targetShare"] = str(round((float(player_stats["totalReceptions"]) / float(team_stats["teamPassAttempts"])) * 100, 2))
     player_stats["rushShare"] = str(round((float(player_stats["totalRushAttempts"]) / float(team_stats["teamRushAttempts"])) * 100, 2))
 
-    return player_stats
+    return {**player_stats, **team_stats}
 
 
 def clean_k_data(player_data):

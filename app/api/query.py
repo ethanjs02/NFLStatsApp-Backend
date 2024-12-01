@@ -18,7 +18,7 @@ headers = {
 
 def get_nfl_player_data(player_id, team_id, pos_id):
     if(pos_id == "8"):
-        return get_qb_stats(player_id)
+        return get_qb_stats(player_id, team_id)
     elif(pos_id in ["1", "7"] ):
         return get_wr_stats(player_id, team_id)
     elif(pos_id in ["9", "10"]):
@@ -27,8 +27,11 @@ def get_nfl_player_data(player_id, team_id, pos_id):
         return get_k_stats(player_id)
     
 
-def get_qb_stats(player_id):
-    return clean_qb_data(get_player_stats(player_id))
+def get_qb_stats(player_id, team_id):
+    player_data = get_player_stats(player_id)
+    team_data = get_team_stats(team_id)
+
+    return clean_qb_data(player_data, team_data)
 
 
 def get_wr_stats(player_id, team_id):
